@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/restart.css">
+    <title>Form Prototype 12</title>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+
+    <div id="root"></div>
+
+    <div class="container__button">
+      <button class="button" onclick="makePDF()">Generate PDF</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.0-alpha.1/jspdf.plugin.autotable.js"></script>
+
+    <script>
+      function makePDF() {
+        var doc = new jsPDF('p', 'px', 'a4'),
+
+            elem1 = document.getElementById('table1'),
+            data1 = doc.autoTableHtmlToJson(elem1),
+
+            elem2 = document.getElementById('table2'),
+            data2 = doc.autoTableHtmlToJson(elem2),
+
+            elem3 = document.getElementById('table3'),
+            data3 = doc.autoTableHtmlToJson(elem3),
+
+            // elem4 = document.getElementById('table4'),
+            // data4 = doc.autoTableHtmlToJson(elem4),
+
+            elem5 = document.getElementById('table5'),
+            data5 = doc.autoTableHtmlToJson(elem5),
+
+            // elem6 = document.getElementById('table6'),
+            // data6 = doc.autoTableHtmlToJson(elem6),
+            //
+            // elem7 = document.getElementById('table7'),
+            // data7 = doc.autoTableHtmlToJson(elem7),
+
+            addtables = document.getElementsByClassName('addtable'),
+            addtablelines = document.getElementsByClassName('addtableline'),
+            i = 0,
+            j = 0,
+
+            elem8 = document.getElementById('table8'), //same
+            data8 = doc.autoTableHtmlToJson(elem8),
+
+            elem9 = document.getElementById('table9'), //same2
+            data9 = doc.autoTableHtmlToJson(elem9),
+
+            addtables2 = document.getElementsByClassName('addtable2'), //same2
+            k = 0,
+
+            elem10 = document.getElementById('table10'), //same
+            data10 = doc.autoTableHtmlToJson(elem10),
+
+            elem11 = document.getElementById('table11'),
+            data11 = doc.autoTableHtmlToJson(elem11),
+
+            elem12 = document.getElementById('table12'),
+            data12 = doc.autoTableHtmlToJson(elem12),
+
+            addtables3 = document.getElementsByClassName('addtable3'),
+            l = 0;
+
+            elem13 = document.getElementById('table13'), //same
+            data13 = doc.autoTableHtmlToJson(elem13),
+
+            elem14 = document.getElementById('table14'), //same
+            data14 = doc.autoTableHtmlToJson(elem14),
+
+            elem15 = document.getElementById('table15'), //same
+            data15 = doc.autoTableHtmlToJson(elem15),
+
+            addtables4 = document.getElementsByClassName('addtable4'),
+            m = 0;
+
+            elem16 = document.getElementById('table16'), //same
+            data16 = doc.autoTableHtmlToJson(elem16),
+
+            elem17 = document.getElementById('table17'), //same
+            data17 = doc.autoTableHtmlToJson(elem17),
+
+            remove = document.getElementsByClassName('remove'),
+            n = 0,
+
+            label = document.getElementsByTagName('label'),
+            o = 0;
+
+            for (; n<remove.length; n++ ) {
+              remove[n].style.display = 'none';
+            }
+
+            for (; o<label.length; o++ ) {
+              label[o].style.display = 'none';
+            }
+
+        doc.autoTable(data1.columns, data1.rows, {
+            tableLineColor: 0,
+            tableLineWidth: 0,
+            startY: 12.5,
+            tableWidth: 'auto',
+            showHeader: 'firstPage',
+            overflow: 'linebreak',
+            halign: 'left',
+            valign: 'top',
+            margin: {right: 0, left: 12.5},
+            styles: {
+                fillColor: 255,
+                font: 'Arial',
+                fontSize: 10,
+                lineWidth: 0,
+                textColor: 0,
+                // columnWidth: 143.5,
+                overflow: 'linebreak',
+                valign: 'top',
+                cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
+            },
+            headerStyles: {
+              textColor: 105,
+              fontSize: 7.5,
+              fontStyle: 'light',
+              // columnWidth: 287,
+              cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
+            },
+            alternateRowStyles: {
+              fillColor: 255
+            },
+            columnStyles: {
+              0: {columnWidth: 167.5},
+              1: {colunmWidth: 167.5},
+              2: {columnWidth: 117.5}
+            },
+
+            drawCell: function (cell, data) {
+              if ($(cell.raw).hasClass('form--label')) {
+                doc.setTextColor(105);
+                doc.setFontSize(7.5);
+              }
+              else {
+                doc.setFontSize(12);
+              }
+              if ($(cell.raw).hasClass('form--title')) {
+                doc.setTextColor(105);
+                doc.setFontSize(7.5);
+                doc.setFontStyle('italic');
+              }
+            }
+          });
+
+          doc.autoTable(data2.columns, data2.rows, {
+              startY: doc.autoTableEndPosY() + 10,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 0},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 12.5, right: 47.5, top: 0, bottom: 2},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              columnStyles: {
+                0: {columnWidth: 317.5},
+                1: {colunmWidth: 300},
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+          });
+
+          doc.autoTable(data3.columns, data3.rows, {
+              startY: doc.autoTableEndPosY() + 20,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 12.5},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  // columnWidth: 143.5,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              columnStyles: {
+                0: {columnWidth: 167.5},
+                1: {colunmWidth: 167.5},
+                2: {columnWidth: 117.5}
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+          });
+
+          // doc.autoTable(data4.columns, data4.rows, {
+          //     startY: doc.autoTableEndPosY() + 0,
+          //
+          //     tableLineColor: 0,
+          //     tableLineWidth: 0,
+          //     tableWidth: 'auto',
+          //     showHeader: 'never',
+          //     overflow: 'linebreak',
+          //     halign: 'left',
+          //     valign: 'top',
+          //     margin: {right: 0, left: 12.5},
+          //     styles: {
+          //         fillColor: 255,
+          //         font: 'Arial',
+          //         fontSize: 10,
+          //         lineWidth: 0,
+          //         textColor: 0,
+          //         columnWidth: 2400,
+          //         overflow: 'linebreak',
+          //         valign: 'top',
+          //         cellPadding: {left: 0, right: 0, top: 5, bottom: 5},
+          //     },
+          //     alternateRowStyles: {
+          //       fillColor: 255
+          //     },
+          // });
+
+          doc.autoTable(data5.columns, data5.rows, {
+              startY: doc.autoTableEndPosY() + 5,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 12.5},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  // columnWidth: 143.5,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              columnStyles: {
+                0: {columnWidth: 167.5},
+                1: {colunmWidth: 167.5},
+                2: {columnWidth: 117.5}
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+          });
+
+          for (; j<addtables.length || i<addtablelines.length; ) {
+            if (i == j && (i<addtablelines.length)) {
+              doc.autoTable(doc.autoTableHtmlToJson(addtablelines[i]).columns, doc.autoTableHtmlToJson(addtablelines[i]).rows, {
+                  startY: doc.autoTableEndPosY() + 1,
+
+                  tableLineColor: 0,
+                  tableLineWidth: 0,
+                  tableWidth: 'auto',
+                  showHeader: 'never',
+                  overflow: 'linebreak',
+                  halign: 'left',
+                  valign: 'top',
+                  margin: {right: 0, left: 180.5},
+                  styles: {
+                      fillColor: 255,
+                      font: 'Arial',
+                      fontSize: 10,
+                      lineWidth: 0,
+                      textColor: 0,
+                      columnWidth: 253.5,
+                      overflow: 'linebreak',
+                      valign: 'top',
+                      cellPadding: {left: 0, right: 0, top: 5, bottom: 5},
+                  },
+                  alternateRowStyles: {
+                    fillColor: 255
+                  },
+              });
+              i++;
+            }
+            else if (i != j) {
+              doc.autoTable(doc.autoTableHtmlToJson(addtables[j]).columns, doc.autoTableHtmlToJson(addtables[j]).rows, {
+                startY: doc.autoTableEndPosY() + 5,
+
+                tableLineColor: 0,
+                tableLineWidth: 0,
+                tableWidth: 'auto',
+                showHeader: 'never',
+                overflow: 'linebreak',
+                halign: 'left',
+                valign: 'top',
+                margin: {right: 0, left: 12.5},
+                styles: {
+                    fillColor: 255,
+                    font: 'Arial',
+                    fontSize: 10,
+                    lineWidth: 0,
+                    textColor: 0,
+                    // columnWidth: 143.5,
+                    overflow: 'linebreak',
+                    valign: 'top',
+                    cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
+                },
+                alternateRowStyles: {
+                  fillColor: 255
+                },
+                columnStyles: {
+                  0: {columnWidth: 167.5},
+                  1: {colunmWidth: 167.5},
+                  2: {columnWidth: 117.5}
+                },
+
+                drawCell: function (cell, data) {
+                  if ($(cell.raw).hasClass('form--label')) {
+                    doc.setTextColor(105);
+                    doc.setFontSize(7.5);
+                  }
+                  else {
+                    doc.setFontSize(12);
+                  }
+                  if ($(cell.raw).hasClass('form--title')) {
+                    doc.setTextColor(105);
+                    doc.setFontSize(7.5);
+                    doc.setFontStyle('italic');
+                  }
+                }
+              });
+              j++;
+            }
+          }
+
+          doc.autoTable(data8.columns, data8.rows, {
+              startY: doc.autoTableEndPosY() + 0,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 12.5},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  columnWidth: 2400,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 0, right: 0, top: 5, bottom: 5},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+          });
+
+          doc.autoTable(data9.columns, data9.rows, {
+              startY: doc.autoTableEndPosY() + 5,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 12.5},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  // columnWidth: 143.5,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              columnStyles: {
+                0: {columnWidth: 167.5},
+                1: {colunmWidth: 167.5},
+                2: {columnWidth: 117.5}
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+          });
+
+          for (; k<addtables2.length; k++) {
+            doc.autoTable(doc.autoTableHtmlToJson(addtables2[k]).columns, doc.autoTableHtmlToJson(addtables2[k]).rows, {
+                startY: doc.autoTableEndPosY() + 5,
+
+                tableLineColor: 0,
+                tableLineWidth: 0,
+                tableWidth: 'auto',
+                showHeader: 'never',
+                overflow: 'linebreak',
+                halign: 'left',
+                valign: 'top',
+                margin: {right: 0, left: 12.5},
+                styles: {
+                    fillColor: 255,
+                    font: 'Arial',
+                    fontSize: 10,
+                    lineWidth: 0,
+                    textColor: 0,
+                    // columnWidth: 143.5,
+                    overflow: 'linebreak',
+                    valign: 'top',
+                    cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
+                },
+                alternateRowStyles: {
+                  fillColor: 255
+                },
+                columnStyles: {
+                  0: {columnWidth: 167.5},
+                  1: {colunmWidth: 167.5},
+                  2: {columnWidth: 117.5}
+                },
+
+                drawCell: function (cell, data) {
+                  if ($(cell.raw).hasClass('form--label')) {
+                    doc.setTextColor(105);
+                    doc.setFontSize(7.5);
+                  }
+                  else {
+                    doc.setFontSize(12);
+                  }
+                  if ($(cell.raw).hasClass('form--title')) {
+                    doc.setTextColor(105);
+                    doc.setFontSize(7.5);
+                    doc.setFontStyle('italic');
+                  }
+                }
+            });
+          }
+
+          doc.autoTable(data10.columns, data10.rows, {
+              startY: doc.autoTableEndPosY() + 10,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 12.5},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  columnWidth: 2400,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 0, right: 0, top: 5, bottom: 5},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+          });
+
+          doc.autoTable(data11.columns, data11.rows, {
+              startY: doc.autoTableEndPosY() + 20,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 0},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 12.5, right: 67.5, top: 0, bottom: 5},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              columnStyles: {
+                0: {columnWidth: 167.5},
+                1: {colunmWidth: 167.5},
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+          });
+
+          doc.autoTable(data12.columns, data12.rows, {
+              startY: doc.autoTableEndPosY() + 10,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 0},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 12.5, right: 47.5, top: 0, bottom: 5},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              columnStyles: {
+                0: {columnWidth: 317.5},
+                1: {colunmWidth: 300},
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+          });
+
+          for (; l<addtables3.length; l++) {
+            doc.autoTable(doc.autoTableHtmlToJson(addtables3[l]).columns, doc.autoTableHtmlToJson(addtables3[l]).rows, {
+              startY: doc.autoTableEndPosY() + 10,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 0},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 12.5, right: 47.5, top: 0, bottom: 5},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              columnStyles: {
+                0: {columnWidth: 317.5},
+                1: {colunmWidth: 300},
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+            });
+          }
+
+          doc.autoTable(data13.columns, data13.rows, {
+              startY: doc.autoTableEndPosY() + 10,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 12.5},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  columnWidth: 2400,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 0, right: 0, top: 5, bottom: 5},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+          });
+
+          doc.autoTable(data14.columns, data14.rows, {
+              startY: doc.autoTableEndPosY() + 20,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 0},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 12.5, right: 67.5, top: 0, bottom: 5},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              columnStyles: {
+                0: {columnWidth: 167.5},
+                1: {colunmWidth: 167.5},
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+          });
+
+          doc.autoTable(data15.columns, data15.rows, {
+              startY: doc.autoTableEndPosY() + 10,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 0},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 12.5, right: 47.5, top: 0, bottom: 5},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              columnStyles: {
+                0: {columnWidth: 317.5},
+                1: {colunmWidth: 300},
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+          });
+
+          for (; m<addtables4.length; m++) {
+            doc.autoTable(doc.autoTableHtmlToJson(addtables4[m]).columns, doc.autoTableHtmlToJson(addtables4[m]).rows, {
+              startY: doc.autoTableEndPosY() + 10,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 0},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 12.5, right: 47.5, top: 0, bottom: 5},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              columnStyles: {
+                0: {columnWidth: 317.5},
+                1: {colunmWidth: 300},
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+            });
+          }
+
+          doc.autoTable(data16.columns, data16.rows, {
+              startY: doc.autoTableEndPosY() + 10,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 12.5},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  columnWidth: 2400,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 0, right: 0, top: 5, bottom: 5},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+          });
+
+          doc.autoTable(data17.columns, data17.rows, {
+              startY: doc.autoTableEndPosY() + 20,
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 0},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 10,
+                  lineWidth: 0,
+                  textColor: 0,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 12.5, right: 67.5, top: 0, bottom: 5},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              columnStyles: {
+                0: {columnWidth: 167.5},
+                1: {colunmWidth: 167.5},
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                  doc.setFontStyle('italic');
+                }
+              }
+          });
+
+         doc.save("document.pdf");
+      }
+
+    </script>
+  </body>
+</html>

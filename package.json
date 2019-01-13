@@ -1,0 +1,35 @@
+{
+  "name": "04",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@react-pdf/renderer": "^1.0.0-alpha.15",
+    "emotion": "^9.2.8",
+    "floating-label-react": "^0.3.0",
+    "html2canvas": "^1.0.0-alpha.12",
+    "html2canvas-proxy": "^1.0.1",
+    "image-extensions": "^1.1.0",
+    "immutable": "^3.8.2",
+    "jspdf": "^1.4.1",
+    "react": "^16.4.2",
+    "react-art": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-emotion": "^9.2.8",
+    "react-grid-layout": "^0.16.6",
+    "react-images-upload": "^1.2.3",
+    "react-native": "^0.57.8",
+    "react-native-web": "^0.9.13",
+    "react-router-dom": "^4.3.1",
+    "react-router-native": "^4.3.0",
+    "react-scripts": "^1.1.5",
+    "react-visual-form-builder": "0.0.15",
+    "slate": "^0.40.2",
+    "slate-react": "^0.18.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
