@@ -7,7 +7,7 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/restart.css">
-    <title>Form Prototype 12</title>
+    <title>Briefmaker</title>
   </head>
   <body>
     <noscript>
@@ -26,7 +26,32 @@
 
     <script>
       function makePDF() {
+        // Name the file
+        var nameFile = $('#nameFile > div > p.hidden').html();
+
+        // Remove hidden labels in printed document and readd them after printing function
+        var remove = document.getElementsByClassName('hiddenPrint');
+        var n = 0;
+
+        for (; n<remove.length; n++ ) {
+         $('.hiddenPrint').eq(n).addClass('hiddenTemp');
+         // console.log('removed');
+        }
+        setTimeout(function(){
+          for (; n>-1; n-- ) {
+           $('.hiddenPrint').eq(n).removeClass('hiddenTemp');
+           // console.log('readded');
+          }
+        }, 100);
+
+        // Set units, measurments
         var doc = new jsPDF('p', 'px', 'a4'),
+
+            elem0 = document.getElementById('table0'),
+            data0 = doc.autoTableHtmlToJson(elem0),
+
+            elemDiv1 = document.getElementById('divider1'),
+            div1 = doc.autoTableHtmlToJson(elemDiv1),
 
             elem1 = document.getElementById('table1'),
             data1 = doc.autoTableHtmlToJson(elem1),
@@ -34,133 +59,241 @@
             elem2 = document.getElementById('table2'),
             data2 = doc.autoTableHtmlToJson(elem2),
 
+            elemDiv2 = document.getElementById('divider2'),
+            div2 = doc.autoTableHtmlToJson(elemDiv2),
+
             elem3 = document.getElementById('table3'),
             data3 = doc.autoTableHtmlToJson(elem3),
 
-            // elem4 = document.getElementById('table4'),
-            // data4 = doc.autoTableHtmlToJson(elem4),
+            elemDiv3 = document.getElementById('divider3'),
+            div3 = doc.autoTableHtmlToJson(elemDiv3),
 
-            elem5 = document.getElementById('table5'),
-            data5 = doc.autoTableHtmlToJson(elem5),
-
-            // elem6 = document.getElementById('table6'),
-            // data6 = doc.autoTableHtmlToJson(elem6),
-            //
-            // elem7 = document.getElementById('table7'),
-            // data7 = doc.autoTableHtmlToJson(elem7),
+            elem4 = document.getElementById('table4'),
+            data4 = doc.autoTableHtmlToJson(elem4),
 
             addtables = document.getElementsByClassName('addtable'),
             addtablelines = document.getElementsByClassName('addtableline'),
             i = 0,
             j = 0,
 
-            elem8 = document.getElementById('table8'), //same
-            data8 = doc.autoTableHtmlToJson(elem8),
+            elem5 = document.getElementById('table5'),
+            data5 = doc.autoTableHtmlToJson(elem5),
 
-            elem9 = document.getElementById('table9'), //same2
-            data9 = doc.autoTableHtmlToJson(elem9),
-
-            addtables2 = document.getElementsByClassName('addtable2'), //same2
+            addtables2 = document.getElementsByClassName('addtable2'),
+            addtablelines2 = document.getElementsByClassName('addtableline2'),
+            l = 0,
             k = 0,
 
-            elem10 = document.getElementById('table10'), //same
-            data10 = doc.autoTableHtmlToJson(elem10),
+            elem6 = document.getElementById('table6'),
+            data6 = doc.autoTableHtmlToJson(elem6),
 
-            elem11 = document.getElementById('table11'),
-            data11 = doc.autoTableHtmlToJson(elem11),
+            elemDiv4 = document.getElementById('divider4'),
+            div4 = doc.autoTableHtmlToJson(elemDiv4),
 
-            elem12 = document.getElementById('table12'),
-            data12 = doc.autoTableHtmlToJson(elem12),
+            elem7 = document.getElementById('table7'),
+            data7 = doc.autoTableHtmlToJson(elem7),
+
+            elemDiv5 = document.getElementById('divider5'),
+            div5 = doc.autoTableHtmlToJson(elemDiv5),
+
+            elem8 = document.getElementById('table8'),
+            data8 = doc.autoTableHtmlToJson(elem8),
 
             addtables3 = document.getElementsByClassName('addtable3'),
-            l = 0;
+            o = 0,
 
-            elem13 = document.getElementById('table13'), //same
-            data13 = doc.autoTableHtmlToJson(elem13),
+            elemDiv6 = document.getElementById('divider6'),
+            div6 = doc.autoTableHtmlToJson(elemDiv6),
 
-            elem14 = document.getElementById('table14'), //same
-            data14 = doc.autoTableHtmlToJson(elem14),
-
-            elem15 = document.getElementById('table15'), //same
-            data15 = doc.autoTableHtmlToJson(elem15),
+            elem9 = document.getElementById('table9'),
+            data9 = doc.autoTableHtmlToJson(elem9),
 
             addtables4 = document.getElementsByClassName('addtable4'),
-            m = 0;
+            p = 0,
 
-            elem16 = document.getElementById('table16'), //same
-            data16 = doc.autoTableHtmlToJson(elem16),
+            elem10 = document.getElementById('table10'),
+            data10 = doc.autoTableHtmlToJson(elem10),
 
-            elem17 = document.getElementById('table17'), //same
-            data17 = doc.autoTableHtmlToJson(elem17),
+            elemDiv7 = document.getElementById('divider7'),
+            div7 = doc.autoTableHtmlToJson(elemDiv7),
 
-            remove = document.getElementsByClassName('remove'),
-            n = 0,
+            elem11 = document.getElementById('table11'),
+            data11 = doc.autoTableHtmlToJson(elem11);
 
-            label = document.getElementsByTagName('label'),
-            o = 0;
+          doc.autoTable(data0.columns, data0.rows, {
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              startY: 12.5,
+              tableWidth: 'auto',
+              showHeader: 'firstPage',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 12.5},
+              styles: {
+                  fillColor: 255,
+                  font: 'Helvetica',
+                  fontSize: 12,
+                  lineWidth: 0,
+                  textColor: 0,
+                  columnWidth: 435, //full
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 0, right: 12.5, top: 0, bottom: 2},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setFontSize(15);
+                }
+              }
+            });
 
-            for (; n<remove.length; n++ ) {
-              remove[n].style.display = 'none';
-            }
+            doc.autoTable(div1.columns, div1.rows, {
+                startY: doc.autoTableEndPosY(),
 
-            for (; o<label.length; o++ ) {
-              label[o].style.display = 'none';
-            }
-
-        doc.autoTable(data1.columns, data1.rows, {
-            tableLineColor: 0,
-            tableLineWidth: 0,
-            startY: 12.5,
-            tableWidth: 'auto',
-            showHeader: 'firstPage',
-            overflow: 'linebreak',
-            halign: 'left',
-            valign: 'top',
-            margin: {right: 0, left: 12.5},
-            styles: {
-                fillColor: 255,
-                font: 'Arial',
-                fontSize: 10,
-                lineWidth: 0,
-                textColor: 0,
-                // columnWidth: 143.5,
-                overflow: 'linebreak',
+                tableLineColor: 0,
+                tableLineWidth: 0,
+                tableWidth: 'auto',
+                showHeader: 'never',
+                overflow: 'hidden',
+                halign: 'left',
                 valign: 'top',
-                cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
-            },
-            headerStyles: {
-              textColor: 105,
-              fontSize: 7.5,
-              fontStyle: 'light',
-              // columnWidth: 287,
-              cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
-            },
-            alternateRowStyles: {
-              fillColor: 255
-            },
-            columnStyles: {
-              0: {columnWidth: 167.5},
-              1: {colunmWidth: 167.5},
-              2: {columnWidth: 117.5}
-            },
+                margin: {right: 0, left: 0},
+                styles: {
+                    fillColor: 255,
+                    font: 'Helvetica',
+                    fontSize: 12,
+                    lineWidth: 0,
+                    textColor: 180,
+                    columnWidth: 420,
+                    overflow: 'none',
+                    valign: 'top',
+                    cellPadding: {left: 0, right: 12.5, top: 0, bottom: 5},
+                },
+                alternateRowStyles: {
+                  fillColor: 255
+                },
+            });
 
-            drawCell: function (cell, data) {
-              if ($(cell.raw).hasClass('form--label')) {
-                doc.setTextColor(105);
-                doc.setFontSize(7.5);
-              }
-              else {
-                doc.setFontSize(12);
-              }
-              if ($(cell.raw).hasClass('form--title')) {
-                doc.setTextColor(105);
-                doc.setFontSize(7.5);
-                doc.setFontStyle('italic');
-              }
-            }
-          });
+            doc.autoTable(data1.columns, data1.rows, {
+                startY: doc.autoTableEndPosY() + 10,
+
+                tableLineColor: 0,
+                tableLineWidth: 0,
+                tableWidth: 'auto',
+                showHeader: 'never',
+                overflow: 'linebreak',
+                halign: 'left',
+                valign: 'top',
+                margin: {right: 0, left: 12.5},
+                styles: {
+                    fillColor: 255,
+                    font: 'Helvetica',
+                    fontSize: 12,
+                    lineWidth: 0,
+                    textColor: 0,
+                    overflow: 'linebreak',
+                    valign: 'top',
+                    cellPadding: {left: 0, right: 12.5, top: 0, bottom: 2},
+                },
+                alternateRowStyles: {
+                  fillColor: 255
+                },
+                columnStyles: {
+                  0: {columnWidth: 217.5},
+                  1: {colunmWidth: 200},
+                },
+
+                drawCell: function (cell, data) {
+                  if ($(cell.raw).hasClass('form--label')) {
+                    doc.setTextColor(105);
+                    doc.setFontSize(7.5);
+                  }
+                  else {
+                    doc.setFontSize(12);
+                  }
+                  if ($(cell.raw).hasClass('form--title')) {
+                    doc.setFontSize(15);
+                  }
+                }
+            });
 
           doc.autoTable(data2.columns, data2.rows, {
+              startY: doc.autoTableEndPosY(),
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'linebreak',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 12.5},
+              styles: {
+                  fillColor: 255,
+                  font: 'Arial',
+                  fontSize: 12,
+                  lineWidth: 0,
+                  textColor: 0,
+                  columnWidth: 144.5,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 0, right: 12.5, top: 0, bottom: 10},
+              },
+              alternateRowStyles: {
+                fillColor: 255,
+                cellPadding: {left: 0, right: 12.5, top: 0, bottom: 3}
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+              }
+          });
+
+          doc.autoTable(div2.columns, div2.rows, {
+              startY: doc.autoTableEndPosY(),
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'hidden',
+              halign: 'left',
+              valign: 'top',
+              margin: {right: 0, left: 0},
+              styles: {
+                  fillColor: 255,
+                  font: 'Helvetica',
+                  fontSize: 12,
+                  lineWidth: 0,
+                  textColor: 180,
+                  columnWidth: 420,
+                  overflow: 'none',
+                  valign: 'top',
+                  cellPadding: {left: 0, right: 12.5, top: -9, bottom: 5},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+          });
+
+          doc.autoTable(data3.columns, data3.rows, {
               startY: doc.autoTableEndPosY() + 10,
 
               tableLineColor: 0,
@@ -170,43 +303,68 @@
               overflow: 'linebreak',
               halign: 'left',
               valign: 'top',
+              margin: {right: 0, left: 12.5},
+              styles: {
+                  fillColor: 255,
+                  font: 'Helvetica',
+                  fontSize: 12,
+                  lineWidth: 0,
+                  textColor: 0,
+                  overflow: 'linebreak',
+                  valign: 'top',
+                  cellPadding: {left: 0, right: 12.5, top: 0, bottom: 2},
+              },
+              alternateRowStyles: {
+                fillColor: 255
+              },
+              columnStyles: {
+                0: {columnWidth: 217.5},
+                1: {colunmWidth: 200},
+              },
+
+              drawCell: function (cell, data) {
+                if ($(cell.raw).hasClass('form--label')) {
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+                else {
+                  doc.setFontSize(12);
+                }
+                if ($(cell.raw).hasClass('form--title')) {
+                  doc.setFontSize(15);
+                }
+              }
+          });
+
+          doc.autoTable(div3.columns, div3.rows, {
+              startY: doc.autoTableEndPosY(),
+
+              tableLineColor: 0,
+              tableLineWidth: 0,
+              tableWidth: 'auto',
+              showHeader: 'never',
+              overflow: 'none',
+              halign: 'left',
+              valign: 'top',
               margin: {right: 0, left: 0},
               styles: {
                   fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
+                  font: 'Helvetica',
+                  fontSize: 12,
                   lineWidth: 0,
-                  textColor: 0,
-                  overflow: 'linebreak',
+                  textColor: 180,
+                  columnWidth: 445,
+                  overflow: 'hidden',
                   valign: 'top',
-                  cellPadding: {left: 12.5, right: 47.5, top: 0, bottom: 2},
+                  cellPadding: {left: 12.5, right: 12.5, top: -2.5, bottom: 0},
               },
               alternateRowStyles: {
                 fillColor: 255
               },
-              columnStyles: {
-                0: {columnWidth: 317.5},
-                1: {colunmWidth: 300},
-              },
-
-              drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
-              }
           });
 
-          doc.autoTable(data3.columns, data3.rows, {
-              startY: doc.autoTableEndPosY() + 20,
+          doc.autoTable(data4.columns, data4.rows, {
+              startY: doc.autoTableEndPosY(),
 
               tableLineColor: 0,
               tableLineWidth: 0,
@@ -218,22 +376,20 @@
               margin: {right: 0, left: 12.5},
               styles: {
                   fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
+                  font: 'Helvetica',
+                  fontSize: 12,
                   lineWidth: 0,
                   textColor: 0,
-                  // columnWidth: 143.5,
                   overflow: 'linebreak',
                   valign: 'top',
-                  cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
+                  cellPadding: {left: 0, right: 12.5, top: 0, bottom: 0},
               },
               alternateRowStyles: {
                 fillColor: 255
               },
               columnStyles: {
-                0: {columnWidth: 167.5},
-                1: {colunmWidth: 167.5},
-                2: {columnWidth: 117.5}
+                0: {columnWidth: 217.5},
+                1: {colunmWidth: 200},
               },
 
               drawCell: function (cell, data) {
@@ -245,83 +401,7 @@
                   doc.setFontSize(12);
                 }
                 if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
-              }
-          });
-
-          // doc.autoTable(data4.columns, data4.rows, {
-          //     startY: doc.autoTableEndPosY() + 0,
-          //
-          //     tableLineColor: 0,
-          //     tableLineWidth: 0,
-          //     tableWidth: 'auto',
-          //     showHeader: 'never',
-          //     overflow: 'linebreak',
-          //     halign: 'left',
-          //     valign: 'top',
-          //     margin: {right: 0, left: 12.5},
-          //     styles: {
-          //         fillColor: 255,
-          //         font: 'Arial',
-          //         fontSize: 10,
-          //         lineWidth: 0,
-          //         textColor: 0,
-          //         columnWidth: 2400,
-          //         overflow: 'linebreak',
-          //         valign: 'top',
-          //         cellPadding: {left: 0, right: 0, top: 5, bottom: 5},
-          //     },
-          //     alternateRowStyles: {
-          //       fillColor: 255
-          //     },
-          // });
-
-          doc.autoTable(data5.columns, data5.rows, {
-              startY: doc.autoTableEndPosY() + 5,
-
-              tableLineColor: 0,
-              tableLineWidth: 0,
-              tableWidth: 'auto',
-              showHeader: 'never',
-              overflow: 'linebreak',
-              halign: 'left',
-              valign: 'top',
-              margin: {right: 0, left: 12.5},
-              styles: {
-                  fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
-                  lineWidth: 0,
-                  textColor: 0,
-                  // columnWidth: 143.5,
-                  overflow: 'linebreak',
-                  valign: 'top',
-                  cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
-              },
-              alternateRowStyles: {
-                fillColor: 255
-              },
-              columnStyles: {
-                0: {columnWidth: 167.5},
-                1: {colunmWidth: 167.5},
-                2: {columnWidth: 117.5}
-              },
-
-              drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
+                  doc.setFontSize(15);
                 }
               }
           });
@@ -329,26 +409,26 @@
           for (; j<addtables.length || i<addtablelines.length; ) {
             if (i == j && (i<addtablelines.length)) {
               doc.autoTable(doc.autoTableHtmlToJson(addtablelines[i]).columns, doc.autoTableHtmlToJson(addtablelines[i]).rows, {
-                  startY: doc.autoTableEndPosY() + 1,
+                  startY: doc.autoTableEndPosY(),
 
                   tableLineColor: 0,
                   tableLineWidth: 0,
                   tableWidth: 'auto',
                   showHeader: 'never',
-                  overflow: 'linebreak',
+                  overflow: 'none',
                   halign: 'left',
                   valign: 'top',
-                  margin: {right: 0, left: 180.5},
+                  margin: {right: 0, left: 0},
                   styles: {
                       fillColor: 255,
-                      font: 'Arial',
-                      fontSize: 10,
+                      font: 'Helvetica',
+                      fontSize: 12,
                       lineWidth: 0,
-                      textColor: 0,
-                      columnWidth: 253.5,
-                      overflow: 'linebreak',
+                      textColor: 180,
+                      columnWidth: 445,
+                      overflow: 'hidden',
                       valign: 'top',
-                      cellPadding: {left: 0, right: 0, top: 5, bottom: 5},
+                      cellPadding: {left: 12.5, right: 12.5, top: -3, bottom: 0},
                   },
                   alternateRowStyles: {
                     fillColor: 255
@@ -358,7 +438,7 @@
             }
             else if (i != j) {
               doc.autoTable(doc.autoTableHtmlToJson(addtables[j]).columns, doc.autoTableHtmlToJson(addtables[j]).rows, {
-                startY: doc.autoTableEndPosY() + 5,
+                startY: doc.autoTableEndPosY(),
 
                 tableLineColor: 0,
                 tableLineWidth: 0,
@@ -371,21 +451,19 @@
                 styles: {
                     fillColor: 255,
                     font: 'Arial',
-                    fontSize: 10,
+                    fontSize: 12,
                     lineWidth: 0,
                     textColor: 0,
-                    // columnWidth: 143.5,
                     overflow: 'linebreak',
                     valign: 'top',
-                    cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
+                    cellPadding: {left: 0, right: 33.5, top: 0, bottom: 0},
                 },
                 alternateRowStyles: {
                   fillColor: 255
                 },
                 columnStyles: {
-                  0: {columnWidth: 167.5},
-                  1: {colunmWidth: 167.5},
-                  2: {columnWidth: 117.5}
+                  0: {columnWidth: 217.5},
+                  1: {colunmWidth: 200},
                 },
 
                 drawCell: function (cell, data) {
@@ -397,9 +475,7 @@
                     doc.setFontSize(12);
                   }
                   if ($(cell.raw).hasClass('form--title')) {
-                    doc.setTextColor(105);
-                    doc.setFontSize(7.5);
-                    doc.setFontStyle('italic');
+                    doc.setFontSize(15);
                   }
                 }
               });
@@ -407,8 +483,8 @@
             }
           }
 
-          doc.autoTable(data8.columns, data8.rows, {
-              startY: doc.autoTableEndPosY() + 0,
+          doc.autoTable(data5.columns, data5.rows, {
+              startY: doc.autoTableEndPosY(),
 
               tableLineColor: 0,
               tableLineWidth: 0,
@@ -420,70 +496,103 @@
               margin: {right: 0, left: 12.5},
               styles: {
                   fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
+                  font: 'Helvetica',
+                  fontSize: 12,
                   lineWidth: 0,
                   textColor: 0,
-                  columnWidth: 2400,
+                  columnWidth: 435, //full
                   overflow: 'linebreak',
                   valign: 'top',
-                  cellPadding: {left: 0, right: 0, top: 5, bottom: 5},
+                  cellPadding: {left: 0, right: 12.5, top: 0, bottom: 5},
               },
               alternateRowStyles: {
                 fillColor: 255
               },
-          });
-
-          doc.autoTable(data9.columns, data9.rows, {
-              startY: doc.autoTableEndPosY() + 5,
-
-              tableLineColor: 0,
-              tableLineWidth: 0,
-              tableWidth: 'auto',
-              showHeader: 'never',
-              overflow: 'linebreak',
-              halign: 'left',
-              valign: 'top',
-              margin: {right: 0, left: 12.5},
-              styles: {
-                  fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
-                  lineWidth: 0,
-                  textColor: 0,
-                  // columnWidth: 143.5,
-                  overflow: 'linebreak',
-                  valign: 'top',
-                  cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
-              },
-              alternateRowStyles: {
-                fillColor: 255
-              },
-              columnStyles: {
-                0: {columnWidth: 167.5},
-                1: {colunmWidth: 167.5},
-                2: {columnWidth: 117.5}
-              },
-
               drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
+                doc.setTextColor(105);
+                doc.setFontSize(7.5);
               }
-          });
+            });
 
-          for (; k<addtables2.length; k++) {
-            doc.autoTable(doc.autoTableHtmlToJson(addtables2[k]).columns, doc.autoTableHtmlToJson(addtables2[k]).rows, {
-                startY: doc.autoTableEndPosY() + 5,
+            for (; k<addtables2.length || l<addtablelines2.length; ) {
+              if (l == k && (l<addtablelines2.length)) {
+                doc.autoTable(doc.autoTableHtmlToJson(addtablelines2[l]).columns, doc.autoTableHtmlToJson(addtablelines2[l]).rows, {
+                    startY: doc.autoTableEndPosY(),
+
+                    tableLineColor: 0,
+                    tableLineWidth: 0,
+                    tableWidth: 'auto',
+                    showHeader: 'never',
+                    overflow: 'none',
+                    halign: 'left',
+                    valign: 'top',
+                    margin: {right: 0, left: 0},
+                    styles: {
+                        fillColor: 255,
+                        font: 'Helvetica',
+                        fontSize: 12,
+                        lineWidth: 0,
+                        textColor: 180,
+                        columnWidth: 445,
+                        overflow: 'hidden',
+                        valign: 'top',
+                        cellPadding: {left: 12.5, right: 12.5, top: -2, bottom: 0},
+                    },
+                    alternateRowStyles: {
+                      fillColor: 255
+                    },
+                });
+                l++;
+              }
+              else if (l != k) {
+                doc.autoTable(doc.autoTableHtmlToJson(addtables2[k]).columns, doc.autoTableHtmlToJson(addtables2[k]).rows, {
+                  startY: doc.autoTableEndPosY(),
+
+                  tableLineColor: 0,
+                  tableLineWidth: 0,
+                  tableWidth: 'auto',
+                  showHeader: 'never',
+                  overflow: 'linebreak',
+                  halign: 'left',
+                  valign: 'top',
+                  margin: {right: 0, left: 12.5},
+                  styles: {
+                      fillColor: 255,
+                      font: 'Arial',
+                      fontSize: 12,
+                      lineWidth: 0,
+                      textColor: 0,
+                      overflow: 'linebreak',
+                      valign: 'top',
+                      cellPadding: {left: 0, right: 33.5, top: 2, bottom: 0},
+                  },
+                  alternateRowStyles: {
+                    fillColor: 255
+                  },
+                  columnStyles: {
+                    0: {columnWidth: 217.5},
+                    1: {colunmWidth: 200},
+                  },
+
+                  drawCell: function (cell, data) {
+                    if ($(cell.raw).hasClass('form--label')) {
+                      doc.setTextColor(105);
+                      doc.setFontSize(7.5);
+                    }
+                    else {
+                      doc.setFontSize(12);
+                    }
+                    if ($(cell.raw).hasClass('form--title')) {
+                      doc.setFontSize(15);
+                    }
+                  }
+                });
+                k++;
+              }
+            }
+
+            doc.autoTable(data6.columns, data6.rows, {
+                startY: doc.autoTableEndPosY(),
 
                 tableLineColor: 0,
                 tableLineWidth: 0,
@@ -495,484 +604,426 @@
                 margin: {right: 0, left: 12.5},
                 styles: {
                     fillColor: 255,
-                    font: 'Arial',
-                    fontSize: 10,
+                    font: 'Helvetica',
+                    fontSize: 12,
                     lineWidth: 0,
                     textColor: 0,
-                    // columnWidth: 143.5,
+                    columnWidth: 435, //full
                     overflow: 'linebreak',
                     valign: 'top',
-                    cellPadding: {left: 0, right: 33.5, top: 0, bottom: 2},
+                    cellPadding: {left: 0, right: 12.5, top: 0, bottom: 5},
                 },
                 alternateRowStyles: {
                   fillColor: 255
                 },
-                columnStyles: {
-                  0: {columnWidth: 167.5},
-                  1: {colunmWidth: 167.5},
-                  2: {columnWidth: 117.5}
-                },
-
                 drawCell: function (cell, data) {
-                  if ($(cell.raw).hasClass('form--label')) {
-                    doc.setTextColor(105);
-                    doc.setFontSize(7.5);
+                  doc.setTextColor(105);
+                  doc.setFontSize(7.5);
+                }
+              });
+
+              doc.autoTable(div4.columns, div4.rows, {
+                  startY: doc.autoTableEndPosY(),
+
+                  tableLineColor: 0,
+                  tableLineWidth: 0,
+                  tableWidth: 'auto',
+                  showHeader: 'never',
+                  overflow: 'hidden',
+                  halign: 'left',
+                  valign: 'top',
+                  margin: {right: 0, left: 0},
+                  styles: {
+                      fillColor: 255,
+                      font: 'Helvetica',
+                      fontSize: 12,
+                      lineWidth: 0,
+                      textColor: 180,
+                      columnWidth: 420,
+                      overflow: 'none',
+                      valign: 'top',
+                      cellPadding: {left: 0, right: 12.5, top: -7.5, bottom: 5},
+                  },
+                  alternateRowStyles: {
+                    fillColor: 255
+                  },
+              });
+
+              doc.autoTable(data7.columns, data7.rows, {
+                  startY: doc.autoTableEndPosY(),
+
+                  tableLineColor: 0,
+                  tableLineWidth: 0,
+                  tableWidth: 'auto',
+                  showHeader: 'never',
+                  overflow: 'linebreak',
+                  halign: 'left',
+                  valign: 'top',
+                  margin: {right: 0, left: 12.5},
+                  styles: {
+                      fillColor: 255,
+                      font: 'Helvetica',
+                      fontSize: 12,
+                      lineWidth: 0,
+                      textColor: 0,
+                      overflow: 'linebreak',
+                      valign: 'top',
+                      cellPadding: {left: 0, right: 12.5, top: 0, bottom: 2},
+                  },
+                  alternateRowStyles: {
+                    fillColor: 255
+                  },
+                  columnStyles: {
+                    0: {columnWidth: 313.125},
+                    1: {colunmWidth: 104.375},
+                  },
+
+                  drawCell: function (cell, data) {
+                    if ($(cell.raw).hasClass('form--label')) {
+                      doc.setTextColor(105);
+                      doc.setFontSize(7.5);
+                    }
+                    else {
+                      doc.setFontSize(12);
+                    }
+                    if ($(cell.raw).hasClass('form--title')) {
+                      doc.setFontSize(15);
+                    }
                   }
-                  else {
-                    doc.setFontSize(12);
+              });
+
+              doc.autoTable(div5.columns, div5.rows, {
+                startY: doc.autoTableEndPosY(),
+
+                tableLineColor: 0,
+                tableLineWidth: 0,
+                tableWidth: 'auto',
+                showHeader: 'never',
+                overflow: 'hidden',
+                halign: 'left',
+                valign: 'top',
+                margin: {right: 0, left: 0},
+                styles: {
+                    fillColor: 255,
+                    font: 'Helvetica',
+                    fontSize: 12,
+                    lineWidth: 0,
+                    textColor: 180,
+                    columnWidth: 420,
+                    overflow: 'none',
+                    valign: 'top',
+                    cellPadding: {left: 0, right: 12.5, top: -7.5, bottom: 5},
+                },
+                alternateRowStyles: {
+                  fillColor: 255
+                },
+              });
+
+              doc.autoTable(data8.columns, data8.rows, {
+                  startY: doc.autoTableEndPosY(),
+
+                  tableLineColor: 0,
+                  tableLineWidth: 0,
+                  tableWidth: 'auto',
+                  showHeader: 'never',
+                  overflow: 'linebreak',
+                  halign: 'left',
+                  valign: 'top',
+                  margin: {right: 0, left: 12.5},
+                  styles: {
+                      fillColor: 255,
+                      font: 'Helvetica',
+                      fontSize: 12,
+                      lineWidth: 0,
+                      textColor: 0,
+                      overflow: 'linebreak',
+                      valign: 'top',
+                      cellPadding: {left: 0, right: 12.5, top: 0, bottom: 2},
+                  },
+                  alternateRowStyles: {
+                    fillColor: 255
+                  },
+                  columnStyles: {
+                    0: {columnWidth: 313.125},
+                    1: {colunmWidth: 104.375},
+                  },
+
+                  drawCell: function (cell, data) {
+                    if ($(cell.raw).hasClass('form--label')) {
+                      doc.setTextColor(105);
+                      doc.setFontSize(7.5);
+                    }
+                    else {
+                      doc.setFontSize(12);
+                    }
+                    if ($(cell.raw).hasClass('form--title')) {
+                      doc.setFontSize(15);
+                    }
                   }
-                  if ($(cell.raw).hasClass('form--title')) {
-                    doc.setTextColor(105);
-                    doc.setFontSize(7.5);
-                    doc.setFontStyle('italic');
+              });
+
+              for (; o<addtables3.length; o++ ) {
+                  doc.autoTable(doc.autoTableHtmlToJson(addtables3[o]).columns, doc.autoTableHtmlToJson(addtables3[o]).rows, {
+                    startY: doc.autoTableEndPosY(),
+
+                    tableLineColor: 0,
+                    tableLineWidth: 0,
+                    tableWidth: 'auto',
+                    showHeader: 'never',
+                    overflow: 'linebreak',
+                    halign: 'left',
+                    valign: 'top',
+                    margin: {right: 0, left: 12.5},
+                    styles: {
+                        fillColor: 255,
+                        font: 'Helvetica',
+                        fontSize: 12,
+                        lineWidth: 0,
+                        textColor: 0,
+                        overflow: 'linebreak',
+                        valign: 'top',
+                        cellPadding: {left: 0, right: 12.5, top: 0, bottom: 2},
+                    },
+                    alternateRowStyles: {
+                      fillColor: 255
+                    },
+                    columnStyles: {
+                      0: {columnWidth: 313.125},
+                      1: {colunmWidth: 104.375},
+                    },
+
+                    drawCell: function (cell, data) {
+                      if ($(cell.raw).hasClass('form--label')) {
+                        doc.setTextColor(105);
+                        doc.setFontSize(7.5);
+                      }
+                      else {
+                        doc.setFontSize(12);
+                      }
+                      if ($(cell.raw).hasClass('form--title')) {
+                        doc.setFontSize(15);
+                      }
+                    }
+                  });
+                }
+
+                doc.autoTable(div6.columns, div6.rows, {
+                    startY: doc.autoTableEndPosY(),
+
+                    tableLineColor: 0,
+                    tableLineWidth: 0,
+                    tableWidth: 'auto',
+                    showHeader: 'never',
+                    overflow: 'hidden',
+                    halign: 'left',
+                    valign: 'top',
+                    margin: {right: 0, left: 0},
+                    styles: {
+                        fillColor: 255,
+                        font: 'Helvetica',
+                        fontSize: 12,
+                        lineWidth: 0,
+                        textColor: 180,
+                        columnWidth: 420,
+                        overflow: 'none',
+                        valign: 'top',
+                        cellPadding: {left: 0, right: 12.5, top: -10, bottom: 5},
+                    },
+                    alternateRowStyles: {
+                      fillColor: 255
+                    },
+                });
+
+                doc.autoTable(data9.columns, data9.rows, {
+                    startY: doc.autoTableEndPosY() + 12.5,
+
+                    tableLineColor: 0,
+                    tableLineWidth: 0,
+                    tableWidth: 'auto',
+                    showHeader: 'never',
+                    overflow: 'linebreak',
+                    halign: 'left',
+                    valign: 'top',
+                    margin: {right: 0, left: 12.5},
+                    styles: {
+                        fillColor: 255,
+                        font: 'Helvetica',
+                        fontSize: 12,
+                        lineWidth: 0,
+                        textColor: 0,
+                        overflow: 'linebreak',
+                        valign: 'top',
+                        cellPadding: {left: 0, right: 12.5, top: 0, bottom: 2},
+                    },
+                    alternateRowStyles: {
+                      fillColor: 255
+                    },
+                    columnStyles: {
+                      0: {columnWidth: 313.125},
+                      1: {colunmWidth: 104.375},
+                    },
+
+                    drawCell: function (cell, data) {
+                      if ($(cell.raw).hasClass('form--label')) {
+                        doc.setTextColor(105);
+                        doc.setFontSize(7.5);
+                      }
+                      else {
+                        doc.setFontSize(12);
+                      }
+                      if ($(cell.raw).hasClass('form--title')) {
+                        doc.setFontSize(15);
+                      }
+                    }
+                });
+
+                for (; p<addtables4.length; p++ ) {
+                    doc.autoTable(doc.autoTableHtmlToJson(addtables4[p]).columns, doc.autoTableHtmlToJson(addtables4[p]).rows, {
+                      startY: doc.autoTableEndPosY(),
+
+                      tableLineColor: 0,
+                      tableLineWidth: 0,
+                      tableWidth: 'auto',
+                      showHeader: 'never',
+                      overflow: 'linebreak',
+                      halign: 'left',
+                      valign: 'top',
+                      margin: {right: 0, left: 12.5},
+                      styles: {
+                          fillColor: 255,
+                          font: 'Helvetica',
+                          fontSize: 12,
+                          lineWidth: 0,
+                          textColor: 0,
+                          overflow: 'linebreak',
+                          valign: 'top',
+                          cellPadding: {left: 0, right: 12.5, top: 0, bottom: 2},
+                      },
+                      alternateRowStyles: {
+                        fillColor: 255
+                      },
+                      columnStyles: {
+                        0: {columnWidth: 313.125},
+                        1: {colunmWidth: 104.375},
+                      },
+
+                      drawCell: function (cell, data) {
+                        if ($(cell.raw).hasClass('form--label')) {
+                          doc.setTextColor(105);
+                          doc.setFontSize(7.5);
+                        }
+                        else {
+                          doc.setFontSize(12);
+                        }
+                        if ($(cell.raw).hasClass('form--title')) {
+                          doc.setFontSize(15);
+                        }
+                      }
+                    });
                   }
-                }
-            });
-          }
 
-          doc.autoTable(data10.columns, data10.rows, {
-              startY: doc.autoTableEndPosY() + 10,
+                  doc.autoTable(data10.columns, data10.rows, {
+                      startY: doc.autoTableEndPosY(),
 
-              tableLineColor: 0,
-              tableLineWidth: 0,
-              tableWidth: 'auto',
-              showHeader: 'never',
-              overflow: 'linebreak',
-              halign: 'left',
-              valign: 'top',
-              margin: {right: 0, left: 12.5},
-              styles: {
-                  fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
-                  lineWidth: 0,
-                  textColor: 0,
-                  columnWidth: 2400,
-                  overflow: 'linebreak',
-                  valign: 'top',
-                  cellPadding: {left: 0, right: 0, top: 5, bottom: 5},
-              },
-              alternateRowStyles: {
-                fillColor: 255
-              },
-              drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
-              }
-          });
+                      tableLineColor: 0,
+                      tableLineWidth: 0,
+                      tableWidth: 'auto',
+                      showHeader: 'never',
+                      overflow: 'linebreak',
+                      halign: 'left',
+                      valign: 'top',
+                      margin: {right: 0, left: 12.5},
+                      styles: {
+                          fillColor: 255,
+                          font: 'Helvetica',
+                          fontSize: 12,
+                          lineWidth: 0,
+                          textColor: 0,
+                          columnWidth: 435, //full
+                          overflow: 'linebreak',
+                          valign: 'top',
+                          cellPadding: {left: 0, right: 12.5, top: 0, bottom: 5},
+                      },
+                      alternateRowStyles: {
+                        fillColor: 255
+                      },
+                      drawCell: function (cell, data) {
+                        doc.setTextColor(105);
+                        doc.setFontSize(7.5);
+                      }
+                    });
 
-          doc.autoTable(data11.columns, data11.rows, {
-              startY: doc.autoTableEndPosY() + 20,
+                    doc.autoTable(div7.columns, div7.rows, {
+                        startY: doc.autoTableEndPosY(),
 
-              tableLineColor: 0,
-              tableLineWidth: 0,
-              tableWidth: 'auto',
-              showHeader: 'never',
-              overflow: 'linebreak',
-              halign: 'left',
-              valign: 'top',
-              margin: {right: 0, left: 0},
-              styles: {
-                  fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
-                  lineWidth: 0,
-                  textColor: 0,
-                  overflow: 'linebreak',
-                  valign: 'top',
-                  cellPadding: {left: 12.5, right: 67.5, top: 0, bottom: 5},
-              },
-              alternateRowStyles: {
-                fillColor: 255
-              },
-              columnStyles: {
-                0: {columnWidth: 167.5},
-                1: {colunmWidth: 167.5},
-              },
+                        tableLineColor: 0,
+                        tableLineWidth: 0,
+                        tableWidth: 'auto',
+                        showHeader: 'never',
+                        overflow: 'hidden',
+                        halign: 'left',
+                        valign: 'top',
+                        margin: {right: 0, left: 0},
+                        styles: {
+                            fillColor: 255,
+                            font: 'Helvetica',
+                            fontSize: 12,
+                            lineWidth: 0,
+                            textColor: 180,
+                            columnWidth: 420,
+                            overflow: 'none',
+                            valign: 'top',
+                            cellPadding: {left: 0, right: 12.5, top: -7.5, bottom: 5},
+                        },
+                        alternateRowStyles: {
+                          fillColor: 255
+                        },
+                    });
 
-              drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
-              }
-          });
+                    doc.autoTable(data11.columns, data11.rows, {
+                        startY: doc.autoTableEndPosY()+12.5,
 
-          doc.autoTable(data12.columns, data12.rows, {
-              startY: doc.autoTableEndPosY() + 10,
+                        tableLineColor: 0,
+                        tableLineWidth: 0,
+                        tableWidth: 'auto',
+                        showHeader: 'never',
+                        overflow: 'linebreak',
+                        halign: 'left',
+                        valign: 'top',
+                        margin: {right: 0, left: 12.5},
+                        styles: {
+                            fillColor: 255,
+                            font: 'Helvetica',
+                            fontSize: 12,
+                            lineWidth: 0,
+                            textColor: 0,
+                            overflow: 'linebreak',
+                            valign: 'top',
+                            cellPadding: {left: 0, right: 12.5, top: 0, bottom: 2},
+                        },
+                        alternateRowStyles: {
+                          fillColor: 255
+                        },
+                        columnStyles: {
+                          0: {columnWidth: 313.125},
+                          1: {colunmWidth: 104.375},
+                        },
 
-              tableLineColor: 0,
-              tableLineWidth: 0,
-              tableWidth: 'auto',
-              showHeader: 'never',
-              overflow: 'linebreak',
-              halign: 'left',
-              valign: 'top',
-              margin: {right: 0, left: 0},
-              styles: {
-                  fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
-                  lineWidth: 0,
-                  textColor: 0,
-                  overflow: 'linebreak',
-                  valign: 'top',
-                  cellPadding: {left: 12.5, right: 47.5, top: 0, bottom: 5},
-              },
-              alternateRowStyles: {
-                fillColor: 255
-              },
-              columnStyles: {
-                0: {columnWidth: 317.5},
-                1: {colunmWidth: 300},
-              },
+                        drawCell: function (cell, data) {
+                          if ($(cell.raw).hasClass('form--label')) {
+                            doc.setTextColor(105);
+                            doc.setFontSize(7.5);
+                          }
+                          else {
+                            doc.setFontSize(12);
+                          }
+                          if ($(cell.raw).hasClass('form--title')) {
+                            doc.setFontSize(15);
+                          }
+                        }
+                    });
 
-              drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
-              }
-          });
-
-          for (; l<addtables3.length; l++) {
-            doc.autoTable(doc.autoTableHtmlToJson(addtables3[l]).columns, doc.autoTableHtmlToJson(addtables3[l]).rows, {
-              startY: doc.autoTableEndPosY() + 10,
-
-              tableLineColor: 0,
-              tableLineWidth: 0,
-              tableWidth: 'auto',
-              showHeader: 'never',
-              overflow: 'linebreak',
-              halign: 'left',
-              valign: 'top',
-              margin: {right: 0, left: 0},
-              styles: {
-                  fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
-                  lineWidth: 0,
-                  textColor: 0,
-                  overflow: 'linebreak',
-                  valign: 'top',
-                  cellPadding: {left: 12.5, right: 47.5, top: 0, bottom: 5},
-              },
-              alternateRowStyles: {
-                fillColor: 255
-              },
-              columnStyles: {
-                0: {columnWidth: 317.5},
-                1: {colunmWidth: 300},
-              },
-
-              drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
-              }
-            });
-          }
-
-          doc.autoTable(data13.columns, data13.rows, {
-              startY: doc.autoTableEndPosY() + 10,
-
-              tableLineColor: 0,
-              tableLineWidth: 0,
-              tableWidth: 'auto',
-              showHeader: 'never',
-              overflow: 'linebreak',
-              halign: 'left',
-              valign: 'top',
-              margin: {right: 0, left: 12.5},
-              styles: {
-                  fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
-                  lineWidth: 0,
-                  textColor: 0,
-                  columnWidth: 2400,
-                  overflow: 'linebreak',
-                  valign: 'top',
-                  cellPadding: {left: 0, right: 0, top: 5, bottom: 5},
-              },
-              alternateRowStyles: {
-                fillColor: 255
-              },
-              drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
-              }
-          });
-
-          doc.autoTable(data14.columns, data14.rows, {
-              startY: doc.autoTableEndPosY() + 20,
-
-              tableLineColor: 0,
-              tableLineWidth: 0,
-              tableWidth: 'auto',
-              showHeader: 'never',
-              overflow: 'linebreak',
-              halign: 'left',
-              valign: 'top',
-              margin: {right: 0, left: 0},
-              styles: {
-                  fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
-                  lineWidth: 0,
-                  textColor: 0,
-                  overflow: 'linebreak',
-                  valign: 'top',
-                  cellPadding: {left: 12.5, right: 67.5, top: 0, bottom: 5},
-              },
-              alternateRowStyles: {
-                fillColor: 255
-              },
-              columnStyles: {
-                0: {columnWidth: 167.5},
-                1: {colunmWidth: 167.5},
-              },
-
-              drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
-              }
-          });
-
-          doc.autoTable(data15.columns, data15.rows, {
-              startY: doc.autoTableEndPosY() + 10,
-
-              tableLineColor: 0,
-              tableLineWidth: 0,
-              tableWidth: 'auto',
-              showHeader: 'never',
-              overflow: 'linebreak',
-              halign: 'left',
-              valign: 'top',
-              margin: {right: 0, left: 0},
-              styles: {
-                  fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
-                  lineWidth: 0,
-                  textColor: 0,
-                  overflow: 'linebreak',
-                  valign: 'top',
-                  cellPadding: {left: 12.5, right: 47.5, top: 0, bottom: 5},
-              },
-              alternateRowStyles: {
-                fillColor: 255
-              },
-              columnStyles: {
-                0: {columnWidth: 317.5},
-                1: {colunmWidth: 300},
-              },
-
-              drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
-              }
-          });
-
-          for (; m<addtables4.length; m++) {
-            doc.autoTable(doc.autoTableHtmlToJson(addtables4[m]).columns, doc.autoTableHtmlToJson(addtables4[m]).rows, {
-              startY: doc.autoTableEndPosY() + 10,
-
-              tableLineColor: 0,
-              tableLineWidth: 0,
-              tableWidth: 'auto',
-              showHeader: 'never',
-              overflow: 'linebreak',
-              halign: 'left',
-              valign: 'top',
-              margin: {right: 0, left: 0},
-              styles: {
-                  fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
-                  lineWidth: 0,
-                  textColor: 0,
-                  overflow: 'linebreak',
-                  valign: 'top',
-                  cellPadding: {left: 12.5, right: 47.5, top: 0, bottom: 5},
-              },
-              alternateRowStyles: {
-                fillColor: 255
-              },
-              columnStyles: {
-                0: {columnWidth: 317.5},
-                1: {colunmWidth: 300},
-              },
-
-              drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
-              }
-            });
-          }
-
-          doc.autoTable(data16.columns, data16.rows, {
-              startY: doc.autoTableEndPosY() + 10,
-
-              tableLineColor: 0,
-              tableLineWidth: 0,
-              tableWidth: 'auto',
-              showHeader: 'never',
-              overflow: 'linebreak',
-              halign: 'left',
-              valign: 'top',
-              margin: {right: 0, left: 12.5},
-              styles: {
-                  fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
-                  lineWidth: 0,
-                  textColor: 0,
-                  columnWidth: 2400,
-                  overflow: 'linebreak',
-                  valign: 'top',
-                  cellPadding: {left: 0, right: 0, top: 5, bottom: 5},
-              },
-              alternateRowStyles: {
-                fillColor: 255
-              },
-              drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
-              }
-          });
-
-          doc.autoTable(data17.columns, data17.rows, {
-              startY: doc.autoTableEndPosY() + 20,
-
-              tableLineColor: 0,
-              tableLineWidth: 0,
-              tableWidth: 'auto',
-              showHeader: 'never',
-              overflow: 'linebreak',
-              halign: 'left',
-              valign: 'top',
-              margin: {right: 0, left: 0},
-              styles: {
-                  fillColor: 255,
-                  font: 'Arial',
-                  fontSize: 10,
-                  lineWidth: 0,
-                  textColor: 0,
-                  overflow: 'linebreak',
-                  valign: 'top',
-                  cellPadding: {left: 12.5, right: 67.5, top: 0, bottom: 5},
-              },
-              alternateRowStyles: {
-                fillColor: 255
-              },
-              columnStyles: {
-                0: {columnWidth: 167.5},
-                1: {colunmWidth: 167.5},
-              },
-
-              drawCell: function (cell, data) {
-                if ($(cell.raw).hasClass('form--label')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                }
-                else {
-                  doc.setFontSize(12);
-                }
-                if ($(cell.raw).hasClass('form--title')) {
-                  doc.setTextColor(105);
-                  doc.setFontSize(7.5);
-                  doc.setFontStyle('italic');
-                }
-              }
-          });
-
-         doc.save("document.pdf");
+         doc.save(nameFile + ".pdf");
       }
 
     </script>

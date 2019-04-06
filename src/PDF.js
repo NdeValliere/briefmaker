@@ -23,14 +23,13 @@ class TextField extends React.Component {
         <p className="hidden">
           {this.state.value}
         </p>
-        <FloatingLabel
-          // id='email'
-          // name='email'
-          placeholder={this.props.placeholder}
-          // type='email'
-          onChange={this.handleChange}
-          value={this.state.value}
-        />
+        <span className="hiddenPrint">
+          <FloatingLabel
+            placeholder={this.props.placeholder}
+            onChange={this.handleChange}
+            value={this.state.value}
+          />
+        </span>
       </div>
     )
   }
@@ -62,9 +61,11 @@ class SelectField extends React.Component {
         <p className="hidden">
           {this.state.value}
         </p>
-        <select onChange={this.handleChange}>
-          {this.generateOptions()}
-        </select>
+        <span className="hiddenPrint">
+          <select onChange={this.handleChange}>
+            {this.generateOptions()}
+          </select>
+        </span>
       </div>
     )
   }
@@ -90,17 +91,19 @@ class AddField extends React.Component {
           {this.state.blocks.map(() => {
             return (
               <span>
+
               <table className="table addtableline">
                 <thead>
                   <tr>
                     <th></th>
-                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
+                  <tr className="vspace"></tr>
                   <tr>
-                    <td className="border border--3">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
+                    <td className="border border--3">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
                   </tr>
+                  <tr className="vspace"></tr>
                 </tbody>
               </table>
 
@@ -109,25 +112,25 @@ class AddField extends React.Component {
                   <tr>
                     <th></th>
                     <th></th>
-                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                <tr className="hidden">
-                  <td className="form--label">Assessment Evidence</td>
-                  <td className="form--label">Date and Time</td>
-                  <td className="form--label">Where to Submit</td>
+                <tr className="hidden ">
+                  <td className="form--label ">Type of assessment evidence and number</td>
+                  <td className="form--label ">Where to submit</td>
                 </tr>
                 <tr>
-                    <td><TextField defaultValue="" placeholder="Assessment Evidence"/></td>
-                    <td><TextField defaultValue="" placeholder="Date and Time"/></td>
-                    <td><TextField defaultValue="" placeholder="Where to Submit"/></td>
+                    <td className="hspan2"><TextField defaultValue="" placeholder="Type of assessment evidence and number"/></td>
+                    <td className="hspan2-right"><TextField defaultValue="" placeholder="Where to submit"/></td>
                   </tr>
                   <tr className="vspace"></tr>
+                  <tr className="hidden ">
+                    <td className="form--label ">Deadline for submission (GMT)</td>
+                    <td className="form--label ">Feedback published (GMT)</td>
+                  </tr>
                   <tr>
-                    <td></td>
-                    <td><TextField defaultValue="" placeholder="Feedback Published"/></td>
-                    <td></td>
+                    <td className="hspan2"><TextField defaultValue="" placeholder="Deadline for submission (GMT)"/></td>
+                    <td className="hspan2-right"><TextField defaultValue="" placeholder="Feedback published (GMT)"/></td>
                   </tr>
                 </tbody>
               </table>
@@ -135,20 +138,22 @@ class AddField extends React.Component {
             )
           })}
 
-          <table className="table" id="table8">
+          <table className="table" id="table5">
             <thead>
               <tr>
-                <th></th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
               <tr className="vspace"></tr>
+
+              <tr className="hiddenPrint">
                 <td className="hspan3 addRow addRowUp">
-                  <button className="remove" onClick={this.generateBlock.bind(this)}>Add another type of assessment evidence<span className="addRowUpButton">+</span></button>
+                  <button className="remove" onClick={this.generateBlock.bind(this)}>Add assessment evidence type </button>
                 </td>
-                <td className="border">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
+              </tr>
+
+              <tr>
                 <td className="hspan3 addRow">For accommodated hand-in please contact course leader, unit leader or admin staff. See section 1.</td>
               </tr>
             </tbody>
@@ -177,24 +182,36 @@ class AddEvents extends React.Component {
           {this.state.blocks.map(() => {
             return (
               <span>
-                <table className="table addtable2">
+
+                <table className="table addtableline2">
                   <thead>
-                    <tr className="vspace">
-                      <th></th>
-                      <th></th>
+                    <tr>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="vspace"></tr>
+                    <tr>
+                      <td className="border border--3">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table className="table addtable2">
+                  <thead>
+                    <tr className="vspace">
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
                     <tr className="hidden">
-                      <td className="form--label">Event</td>
-                      <td className="form--label">Date and Time</td>
+                      <td className="form--label ">Event</td>
+                      <td className="form--label ">Date and Time</td>
                     </tr>
                     <tr>
-                      <td><TextField defaultValue="" placeholder="Event"/></td>
-                      <td><TextField defaultValue="" placeholder="Date and Time"/></td>
-                      <td></td>
+                      <td className="hspan2"><TextField defaultValue="" placeholder="Event"/></td>
+                      <td className="hspan2-right"><TextField defaultValue="" placeholder="Date and Time"/></td>
                     </tr>
                   </tbody>
                 </table>
@@ -202,7 +219,7 @@ class AddEvents extends React.Component {
             )
           })}
 
-          <table className="table" id="table10">
+          <table className="table" id="table6">
             <thead>
               <tr>
                 <th></th>
@@ -210,12 +227,15 @@ class AddEvents extends React.Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
               <tr className="vspace"></tr>
+
+              <tr className="hiddenPrint">
                 <td className="hspan3 addRow addRowUp">
-                  <button className="remove" onClick={this.generateBlock.bind(this)}>Add another type of event<span className="addRowUpButton">+</span></button>
+                  <button className="remove" onClick={this.generateBlock.bind(this)}>Add event type</button>
                 </td>
-                <td className="border">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
+              </tr>
+
+              <tr>
                 <td className="hspan3 addRow">For more information on assessment refer to section 5.</td>
               </tr>
             </tbody>
@@ -253,12 +273,12 @@ class AddLo extends React.Component {
                   </thead>
                   <tbody>
                     <tr className="hidden">
-                      <td className="form--label hspan2">Learning outcomes (LO)</td>
-                      <td className="form--label hspan1">Marking criteria</td>
+                      <td className="form--label  hspanX">Learning outcomes (LO)</td>
+                      <td className="form--label  hspan1">Assessment criteria</td>
                     </tr>
                     <tr>
-                      <td className="hspan2" ><TextField defaultValue="" placeholder="Learning Outcomes (LO)"/></td>
-                      <td className="hspan1"><TextField defaultValue="" placeholder="Marking criteria"/></td>
+                      <td className="hspanX" ><TextField defaultValue="" placeholder="Learning Outcomes (LO)"/></td>
+                      <td className="hspan1"><TextField defaultValue="" placeholder="Assessment criteria"/></td>
                     </tr>
                     <tr className="vspace"></tr>
                   </tbody>
@@ -267,7 +287,7 @@ class AddLo extends React.Component {
             )
           })}
 
-          <table className="table" id="table13">
+          <table className="table">
             <thead>
               <tr>
                 <th></th>
@@ -277,9 +297,8 @@ class AddLo extends React.Component {
             <tbody>
               <tr>
                 <td className="hspan3 addRow addRowUp">
-                  <button className="remove" onClick={this.generateBlock.bind(this)}>Add another type of learning outcome and marking criteria <span className="addRowUpButton">+</span></button>
+                  <button className="remove" onClick={this.generateBlock.bind(this)}>Add learning outcome type and marking criteria </button>
                 </td>
-                <td className="border">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
               </tr>
             </tbody>
           </table>
@@ -316,11 +335,11 @@ class AddEvidence extends React.Component {
                   </thead>
                   <tbody>
                   <tr className="hidden">
-                    <td className="form--label hspan2">Evidence of achievement</td>
-                    <td className="form--label hspan1">Marking Weight</td>
+                    <td className="form--label  hspanX">Evidence of achievement</td>
+                    <td className="form--label  hspan1">Marking Weight</td>
                   </tr>
                     <tr>
-                      <td className="hspan2" ><TextField defaultValue="" placeholder="Evidence of achievement"/></td>
+                      <td className="hspanX" ><TextField defaultValue="" placeholder="Assessment evidence requirence"/></td>
                       <td className="hspan1"><TextField defaultValue="" placeholder="Marking weight"/></td>
                     </tr>
                     <tr className="vspace"></tr>
@@ -330,7 +349,7 @@ class AddEvidence extends React.Component {
             )
           })}
 
-          <table className="table" id="table16">
+          <table className="table" id="table10">
             <thead>
               <tr>
                 <th></th>
@@ -338,11 +357,14 @@ class AddEvidence extends React.Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr className="hiddenPrint"></tr>
+              <tr className="hiddenPrint">
                 <td className="hspan3 addRow addRowUp">
-                  <button className="remove" onClick={this.generateBlock.bind(this)}>Add another type of evidence<span className="addRowUpButton">+</span></button>
+                  <button className="remove" onClick={this.generateBlock.bind(this)}>Add assessment evidence requrience type and marking weight</button>
                 </td>
-                <td className="border">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
+              </tr>
+
+              <tr>
                 <td className="hspan3 addRow">The work for this unit will be assessed elementally.</td>
               </tr>
             </tbody>
@@ -365,36 +387,58 @@ class PDFContainer extends React.Component {
         <div className="container__edit">
           <div className="container__page" id="html-2-pdfwrapper">
 
-            <table className="table" id="table1">
+            <table className="table" id="table0">
               <thead>
                 <tr>
                   <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="hidden ">
+                  <td className="form--label">Programme Title</td>
+                </tr>
+                <tr>
+                  <td className="hspan3" id="nameFile"><TextField defaultValue="" placeholder="Programme Title"/></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table className="table divider" id="divider1">
+              <thead>
+                <tr>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="vspace hiddenPrint"></tr>
+                <tr className="vspace hiddenPrint"></tr>
+                <tr>
+                  <td className="border">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table className="table" id="table1">
+              <thead>
+                <tr>
                   <th></th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="hspan3"><TextField defaultValue="" placeholder="Programme Title"/></td>
-                </tr>
-                <tr className="vspace"></tr>
-                <tr className="vspace"></tr>
-                <tr>
-                  <td></td>
-                  <td className="form--title">1 &nbsp; Unit information</td>
+                  <td className="form--title">1. Unit information</td>
                   <td></td>
                 </tr>
                 <tr className="vspace"></tr>
-                <tr className="vspace"></tr>
-                <tr className="hidden">
-                  <td className="form--label">College</td>
-                  <td className="form--label">Course</td>
-                  <td className="form--label">NO. of submissions</td>
+                <tr className="hidden ">
+                  <td className="form--label ">College</td>
+                  <td className="form--label ">Course</td>
                 </tr>
                 <tr>
-                  <td><TextField defaultValue="" placeholder="College"/></td>
-                  <td><TextField defaultValue="" placeholder="Course"/></td>
-                  <td><TextField defaultValue="" placeholder="No. of submissions"/></td>
+                  <td className="hspan2"><TextField defaultValue="" placeholder="College"/></td>
+                  <td className="hspan2-right"><TextField defaultValue="" placeholder="Course"/></td>
                 </tr>
                 <tr className="vspace"></tr>
               </tbody>
@@ -405,18 +449,54 @@ class PDFContainer extends React.Component {
                 <tr>
                   <th></th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="hidden">
-                  <td className="form--label hspan2">Unit title and number</td>
+                  <td className="form--label hspan1">Unit title and number</td>
+                  <td className="form--label hspan1">Duration of Unit</td>
                   <td className="form--label hspan1">Credit rating</td>
                 </tr>
                 <tr>
-                  <td className="hspan2" ><TextField defaultValue="" placeholder="Unit title and number"/></td>
+                  <td className="hspan1" ><TextField defaultValue="" placeholder="Unit title and number"/></td>
+                  <td className="hspan1" ><TextField defaultValue="" placeholder="Duration of Unit"/></td>
                   <td className="hspan1"><TextField defaultValue="" placeholder="Credit rating"/></td>
                 </tr>
+                <tr className="vspace hiddenPrint"></tr>
+                <tr className ="hiddenPrint"></tr>
+                <tr className="hidden ">
+                  <td className="form--label ">Course / Unit Leader</td>
+                  <td className="form--label ">Admin Staff</td>
+                  <td className="form--label ">Assessment</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td><TextField defaultValue="" placeholder="Course / Unit Leader"/></td>
+                  <td><TextField defaultValue="" placeholder="Admin Staff"/></td>
+                  <td>
+                    <label className="dropdown">
+                      <span className="hiddenPrint">Assessment</span>
+                    </label>
+                    <SelectField options={["Holistic", "Elemental"]}/>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+
+            <table className="table divider" id="divider2">
+              <thead>
+                <tr>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
                 <tr className="vspace"></tr>
+                <tr className="vspace"></tr>
+                <tr>
+                  <td className="border">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
+                </tr>
               </tbody>
             </table>
 
@@ -425,56 +505,41 @@ class PDFContainer extends React.Component {
                 <tr>
                   <th></th>
                   <th></th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
-              <tr className="hidden">
-                <td className="form--label">Course / Unit Leader</td>
-                <td className="form--label">Admin Staff</td>
-                <td></td>
-              </tr>
                 <tr>
-                  <td><TextField defaultValue="" placeholder="Course / Unit Leader"/></td>
-                  <td><TextField defaultValue="" placeholder="Admin Staff"/></td>
-                  <td>
-                    <label className="dropdown">
-                      <span>Assessment</span>
-                    </label>
-                    <SelectField options={["Holistic", "Elemental"]}/>
-                  </td>
+                  <td className="form--title">2. Dates</td>
                 </tr>
                 <tr className="vspace"></tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td><TextField defaultValue="" placeholder="Duration"/></td>
-                </tr>
-                <tr className="vspace"></tr>
-                <tr>
-                  <td></td>
-                  <td className="form--title">2 &nbsp; Dates</td>
-                  <td></td>
-                </tr>
-                <tr className="vspace"></tr>
-                <tr className="vspace"></tr>
-                <tr className="vspace"></tr>
-                <tr className="hidden">
-                  <td className="form--label">Unit Briefing Location</td>
-                  <td className="form--label">Date and Time</td>
+                <tr className="hidden ">
+                  <td className="form--label ">Unit Briefing Location</td>
+                  <td className="form--label ">Date and Time</td>
                 </tr>
                 <tr>
-                  <td><TextField defaultValue="" placeholder="Unit Briefing Location"/></td>
-                  <td><TextField defaultValue="" placeholder="Date and Time"/></td>
-                  <td></td>
+                  <td className="hspan2"><TextField defaultValue="" placeholder="Unit Briefing Location"/></td>
+                  <td className="hspan2-right"><TextField defaultValue="" placeholder="Date and Time"/></td>
                 </tr>
               </tbody>
             </table>
 
-            <table className="table" id="table5">
+            <table className="table" id="divider3">
               <thead>
                 <tr>
                   <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="vspace"></tr>
+                <tr>
+                  <td className="border border--3">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table className="table" id="table4">
+              <thead>
+                <tr>
                   <th></th>
                   <th></th>
                 </tr>
@@ -482,50 +547,165 @@ class PDFContainer extends React.Component {
               <tbody>
                 <tr className="vspace"></tr>
                 <tr className="hidden">
-                  <td className="form--label">Assessment Evidence</td>
-                  <td className="form--label">Date and Time</td>
-                  <td className="form--label">Where to Submit</td>
+                  <td className="form--label ">Type of assessment evidence and number</td>
+                  <td className="form--label ">Where to submit</td>
                 </tr>
                 <tr>
-                  <td><TextField defaultValue="" placeholder="Assessment Evidence"/></td>
-                  <td><TextField defaultValue="" placeholder="Date and Time"/></td>
-                  <td><TextField defaultValue="" placeholder="Where to Submit"/></td>
+                  <td className="hspan2"><TextField defaultValue="" placeholder="Type of assessment evidence and number"/></td>
+                  <td className="hspan2-right"><TextField defaultValue="" placeholder="Where to submit"/></td>
                 </tr>
                 <tr className="vspace"></tr>
+                <tr className="hidden">
+                  <td className="form--label ">Deadline for submission (GMT)</td>
+                  <td className="form--label ">Feedback published (GMT)</td>
+                </tr>
                 <tr>
-                  <td></td>
-                  <td><TextField defaultValue="" placeholder="Feedback Published"/></td>
-                  <td></td>
+                  <td className="hspan2"><TextField defaultValue="" placeholder="Deadline for submission (GMT)"/></td>
+                  <td className="hspan2-right"><TextField defaultValue="" placeholder="Feedback published (GMT)"/></td>
                 </tr>
               </tbody>
             </table>
 
             <AddField />
 
-            <table className="table" id="table9">
+            <AddEvents />
+
+            <table className="table divider" id="divider4">
               <thead>
                 <tr>
-                  <th></th>
-                  <th></th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="vspace"></tr>
                 <tr className="vspace"></tr>
-                <tr className="hidden">
-                  <td className="form--label">Feedback Tutorial Location</td>
-                  <td className="form--label">Date and Time</td>
-                </tr>
                 <tr>
-                  <td><TextField defaultValue="" placeholder="Feedback Tutorial Location"/></td>
-                  <td><TextField defaultValue="" placeholder="Date and Time"/></td>
-                  <td></td>
+                  <td className="border">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
                 </tr>
               </tbody>
             </table>
 
-            <AddEvents />
+            <table className="table" id="table7">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="vspace"></tr>
+                <tr>
+                  <td className="form--title">3. Unit overview</td>
+                  <td></td>
+                </tr>
+                <tr className="vspace"></tr>
+                <tr>
+                  <td className="hspanX"><TextField defaultValue="" placeholder="Definition from student handbook"/></td>
+                  <td className="hspan1"></td>
+                </tr>
+                <tr className="vspace"></tr>
+              </tbody>
+            </table>
+
+            <table className="table divider" id="divider5">
+              <thead>
+                <tr>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="vspace"></tr>
+                <tr>
+                  <td className="border">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table className="table" id="table8">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="vspace"></tr>
+                <tr>
+                  <td className="form--title">4. Learning outcomes and marking criteria</td>
+                  <td></td>
+                </tr>
+                <tr className="vspace"></tr>
+                <tr className="hidden">
+                  <td className="form--label  hspanX">Learning outcomes (LO)</td>
+                  <td className="form--label  hspan1">Assessment criteria</td>
+                </tr>
+                <tr>
+                  <td className="hspanX" ><TextField defaultValue="" placeholder="Learning Outcomes (LO)"/></td>
+                  <td className="hspan1"><TextField defaultValue="" placeholder="Assessment criteria"/></td>
+                </tr>
+                <tr className="vspace"></tr>
+              </tbody>
+            </table>
+
+            <AddLo />
+
+
+            <table className="table divider" id="divider6">
+              <thead>
+                <tr>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="vspace"></tr>
+                <tr className="vspace"></tr>
+                <tr>
+                  <td className="border">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table className="table" id="table9">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="form--title">5. Assessment evidence</td>
+                  <td></td>
+                </tr>
+                <tr className="vspace"></tr>
+                <tr className="hidden ">
+                  <td className="form--label  hspanX">Evidence of achievement</td>
+                  <td className="form--label  hspan1">Marking Weight</td>
+                </tr>
+                <tr>
+                  <td className="hspanX" ><TextField defaultValue="" placeholder="Assessment evidence requirence"/></td>
+                  <td className="hspan1"><TextField defaultValue="" placeholder="Marking weight"/></td>
+                </tr>
+                <tr className="vspace"></tr>
+              </tbody>
+            </table>
+
+            <AddEvidence />
+
+            <table className="table divider" id="divider7">
+              <thead>
+                <tr>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="vspace"></tr>
+                <tr className="vspace"></tr>
+                <tr>
+                  <td className="border">–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––</td>
+                </tr>
+              </tbody>
+            </table>
 
             <table className="table" id="table11">
               <thead>
@@ -535,110 +715,16 @@ class PDFContainer extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                <tr className="vspace"></tr>
                 <tr>
-                  <td></td>
-                  <td className="form--title">3 &nbsp; Unit overview</td>
-                  <td></td>
-                </tr>
-                <tr className="vspace"></tr>
-                <tr className="vspace"></tr>
-                <tr>
-                  <td className="hspan1"></td>
-                  <td className="hspan2 hspan2-right"><TextField defaultValue="" placeholder="Definition from student handbook"/></td>
-                  <td className="hspan0"></td>
-                </tr>
-                <tr className="vspace"></tr>
-                <tr className="vspace"></tr>
-                <tr className="vspace"></tr>
-                <tr>
-                  <td></td>
-                  <td className="form--title">4 &nbsp; Learning outcomes and marking criteria</td>
-                  <td></td>
-                </tr>
-                <tr className="vspace"></tr>
-              </tbody>
-            </table>
-
-            <table className="table" id="table12">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="hidden">
-                  <td className="form--label hspan2">Learning outcomes (LO)</td>
-                  <td className="form--label hspan1">Marking criteria</td>
-                </tr>
-                <tr>
-                  <td className="hspan2" ><TextField defaultValue="" placeholder="Learning Outcomes (LO)"/></td>
-                  <td className="hspan1"><TextField defaultValue="" placeholder="Marking criteria"/></td>
-                </tr>
-                <tr className="vspace"></tr>
-              </tbody>
-            </table>
-
-            <AddLo />
-
-            <table className="table" id="table14">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td className="form--title">5 &nbsp; Assessment evidence</td>
-                  <td></td>
-                </tr>
-                <tr className="vspace"></tr>
-              </tbody>
-            </table>
-
-            <table className="table" id="table15">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="hidden">
-                  <td className="form--label hspan2">Evidence of achievement</td>
-                  <td className="form--label hspan1">Marking Weight</td>
-                </tr>
-                <tr>
-                  <td className="hspan2" ><TextField defaultValue="" placeholder="Evidence of achievement"/></td>
-                  <td className="hspan1"><TextField defaultValue="" placeholder="Marking weight"/></td>
-                </tr>
-                <tr className="vspace"></tr>
-              </tbody>
-            </table>
-
-            <AddEvidence />
-
-            <table className="table" id="table17">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td className="form--title">6 &nbsp; Resources and reading lists</td>
+                  <td className="form--title">6. Resources and reading lists</td>
                   <td></td>
                 </tr>
                 <tr className="vspace"></tr>
                 <tr>
+                  <td className="hspanX"><TextField defaultValue="" placeholder="Information from student handbook"/></td>
                   <td></td>
-                  <td className="hspan2 hspan2-right"><TextField defaultValue="" placeholder="Information from student handbook"/></td>
                 </tr>
+                <tr className="vspace"></tr>
               </tbody>
             </table>
 

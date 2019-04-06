@@ -1,10 +1,30 @@
+* {
+font-variant-ligatures: none;
+}
+
 html,
-body {
-  font-family: 'Arial', sans-serif;
+body,
+.button,
+select,
+.addRowUp button,
+input[type="text"] {
+  font-family: 'Helvetica Neue', sans-serif;
+  letter-spacing: 1.6px !important;
+  font-weight: 300;
+  font-size: 13px !important;
+  color: #333;
+}
+
+input[type="text"] {
+  letter-spacing: 0.8px !important;
+}
+
+label span {
+  margin-top: -3.5px;
 }
 
 body {
-  background: rgb(225,225,225);
+  background: rgb(247,247,247);
 }
 
 button:hover {
@@ -19,13 +39,13 @@ a {
   right: 0;
   padding-bottom: 87.5px;
   position: absolute;
-  top: 0;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .container__page {
   background: white;
-  box-shadow: 0px 0px 50px 0px rgba(0,0,0,0.05);
+  box-shadow: 0px 0px 50px 0px #d8d8d8;
   /* has to be automated to it extends on form fill */
   /* height: 150vh; */
   /* height: 1200px; */
@@ -37,7 +57,7 @@ a {
   width: 745px;
   padding: 25px;
   position: relative;
-  margin: 10px auto;
+  margin: 75px auto;
 }
 
 .container__button {
@@ -52,10 +72,11 @@ a {
   border: none;
   color: white;
   display: block;
-  font-size: 20px;
-  font-weight: 700;
+
+  /* font-weight: 400; */
+
   height: 60px;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px !important;
   margin: 0 auto !important;
   position: relative;
   /* text-transform: uppercase; */
@@ -97,11 +118,11 @@ a {
 
 /* PDF styling */
 label {
-  font-family: "Arial", sans-serif !important;
+  font-family: "Helvetica Neue", sans-serif !important;
 }
 
 label span {
-  width: 150%;
+  width: 220%;
 }
 
 label.dropdown {
@@ -113,7 +134,8 @@ label.dropdown {
 
 label.dropdown > span {
   box-sizing: border-box;
-  font-size: 0.625rem;
+  font-size: 0.625rem !important;
+  letter-spacing: 1.2px !important;
   left: 0px;
   padding: 0px;
   pointer-events: none;
@@ -124,75 +146,90 @@ label.dropdown > span {
 }
 
 select {
-  color: black;
-  background: rgba(0,0,0,0.05);
+  background: #f7f7f7;
   border: none;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: none;
   border-radius: 0px;
   -webkit-appearance: none;
   -moz-appearance: none;
   -webkit-border-radius: 0px;
-  background-image: url("https://image.flaticon.com/icons/svg/60/60781.svg");
+  background-image: url("https://i.imgur.com/8AhrzuI.png");
   background-position: 97% 50%;
   background-repeat: no-repeat;
   background-size: 9px;
-  font-family: "Arial", sans-serif !important;
-  font-size: 1rem;
-  margin-top: -15px;
-  padding: 14px 0 7px 0;
-  width: 100%;
-}
-
-input[type="text"] {
-  background: rgba(0,0,0,0.05);
-  border-bottom-color: rgba(0,0,0,0.05) !important;
-  font-family: "Arial", sans-serif !important;
-  width: 150%;
-  font-size: 0.8rem;
+  margin-top: -12px;
+  padding: 9px 0 11px 0;
+  width: 102.5%;
+  width: 237px;
 }
 
 input[type="text"] :focus,
 input[type="text"] :active,
 input[type="text"] :hover {
-  border-bottom-color: black !important;
+  border-bottom-color: rgba(0,0,0,0) !important;
 }
 
 .table tr td:last-child input[type="text"] {
-  width: 112.5%;
+  width: 173%;
+  width: 237.4866666667px;
 }
 
 .table tr td.hspan3:last-child input[type="text"] {
-  width: 445%;
+  /* width: 512.5%; */
 }
 
 .table tr td.hspan3:last-child input[type="text"] {
-  width: 445%;
+  width: 510%;
+  width: 745px;
+}
+
+.table tr td.hspanX input[type="text"] {
+  width: 491px !important;
+}
+
+.table tr td.hspanX {
+  width: 508px;
 }
 
 .table tr td.hspan2 input[type="text"] {
-  width: 318%;
+  width: 245%;
+  /* width: 357.69px; */
+  width: 364.995px;
 }
 
 .table tr td.hspan2-right input[type="text"] {
-  width: 280%;
+  width: 255%;
+  /* width: 372.3px; */
+  width: 364.995px;
 }
 
 .table tr td.form--title {
-  font-size: 19px;
-  /* font-style: italic; */
-  font-weight: 700;
-  letter-spacing: 1px;
-  /* text-transform: uppercase; */
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.75px;
   -webkit-margin-after: 25px;
-  -webkit-margin-before: 50px;
-  /* margin-left: 252.5px; */
+  -webkit-margin-before: 25px;
   width: 60%;
 }
 
 .table td.border {
-  color: rgba(0,0,0,1);
+  color: rgb(218, 218, 218);
   font-weight: 100;
-  margin: 5px 0 0 0;
+  letter-spacing: -0.22px;
+}
+
+td.border {
+  width: 100% !important;
+  width: 798px !important;
+  overflow: hidden;
+}
+
+td.border--3 {
+  width: 745px !important;
+}
+
+.divider {
+  margin-left: -26px;
 }
 
 .form--title:first-child {
@@ -200,8 +237,8 @@ input[type="text"] :hover {
 }
 
 .form--label {
-  color: #696969;
-  font-size: 10px;
+  color: #787878;
+  font-size: 6px;
   font-weight: 100;
   /* text-transform: uppercase; */
    -webkit-margin-before: 0;
@@ -243,31 +280,44 @@ th.form--label {
   text-align: left;
 }
 
+input[type="text"] {
+  background: #F7F7F7;
+  border-bottom-color: rgba(0,0,0,0) !important;
+  color: #545454;
+  width: 157.5%;
+  /* width: 229.94px; */
+  width: 237.4866666667px;
+  padding: 8px 0px 8px !important;
+}
+
 .table tr td {
   display: inline-block;
-  margin-right: 15px;
-  width: 35.4%;
+  /* margin-right: 15px; */
+  width: 33%;
+  width: 254px;
 }
 
 .table tr td:last-child {
-  width: 25%;
-  margin-right: -15px;
+  width: 237px;
 }
 
 .hspan3 {
   width: 100% !important;
+  width: 745px !important;
 }
 
 .hspan2 {
-  width: 72.8% !important;
+  width: 50% !important;
+  width: 380.5px !important;
 }
 
 .h1span1 {
   width: 27.2% !important;
+  width: 245.84px !important;
 }
 
 .hspan0 {
-  width: 0% !important
+  width: 0px !important
 }
 
 .vspace {
@@ -276,25 +326,26 @@ th.form--label {
   width: 100%;
 }
 
-.hspan2-right {
+/* .hspan2-right {
   margin-right: 0 !important;
   width: 61.8% !important;
-}
+} */
 
 .addRow {
   font-size: 10px;
   padding-top: 5px;
+  letter-spacing: 0.9px;
+  color: #333;
 }
 
 .addRowUp button {
-  /* border: 1px solid black; */
+  background-color: white;
+  border: 0.5px solid #c5c5c5 !important;
   border: none;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
   width: 100%;
-  text-align: left;
-  /* padding: 5px 5px 7.5px 2.5px !important; */
+  width: 745px;
+  text-align: center;
+  padding: 10px 15px !important;
 }
 
 .addRowUp button:hover {
@@ -305,18 +356,12 @@ th.form--label {
   float: right;
 }
 
-td.border {
-  width: 745px !important;
-  overflow: hidden;
-}
-
-td.border--3 {
-  width: 466.6666666666px !important;
-  padding-left: 278.3333333333px;
-}
-
 .hidden {
   opacity: 0;
   position: absolute;
   z-index: -1;
+}
+
+.hiddenTemp {
+  display: none;
 }
