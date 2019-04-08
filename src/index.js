@@ -22,7 +22,7 @@ setInterval(function(){
   for (index = 0, len = textarea.length; index < len; ++index) {
     textarea[index].addEventListener('keydown', autosize);
   }
-  
+
   if (section5==null) {
     document.getElementById('removeSection5').classList.add('hiddenPrint');
   }
@@ -34,7 +34,7 @@ setInterval(function(){
 function autosize(){
   var el = this;
   setTimeout(function(){
-  el.style.cssText = 'height:35px; padding:0';
+  el.style.cssText = 'height: 17.5px; padding:0';
   // for box-sizing other than "content-box" use:
   // el.style.cssText = '-moz-box-sizing:content-box';
   // console.log('active textarea');

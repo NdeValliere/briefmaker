@@ -27,6 +27,7 @@ span textarea {
   padding: 0 !important;
   height: 35px;
   resize: none;
+  padding-top: 7.5px !important;
 }
 
 label span {
