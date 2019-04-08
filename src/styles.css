@@ -7,16 +7,26 @@ body,
 .button,
 select,
 .addRowUp button,
-input[type="text"] {
-  font-family: 'Helvetica Neue', sans-serif;
+input[type="text"],
+textarea {
+  font-family: 'Helvetica Neue', sans-serif !important;
   letter-spacing: 1.6px !important;
   font-weight: 300;
-  font-size: 13px !important;
+  font-size: 14px !important;
   color: #333;
 }
 
-input[type="text"] {
-  letter-spacing: 0.8px !important;
+input[type="text"],
+textarea {
+  letter-spacing: 1px !important;
+  outline: none !important;
+}
+
+span textarea {
+  line-height: 1.35;
+  padding: 0 !important;
+  height: 35px;
+  resize: none;
 }
 
 label span {
@@ -165,25 +175,34 @@ select {
 
 input[type="text"] :focus,
 input[type="text"] :active,
-input[type="text"] :hover {
+input[type="text"] :hover,
+textarea:focus,
+textarea:active,
+textarea:hover,
+textarea  {
+  border: none !important;
   border-bottom-color: rgba(0,0,0,0) !important;
 }
 
-.table tr td:last-child input[type="text"] {
+.table tr td:last-child input[type="text"],
+.table tr td:last-child textarea {
   width: 173%;
   width: 237.4866666667px;
 }
 
-.table tr td.hspan3:last-child input[type="text"] {
+.table tr td.hspan3:last-child input[type="text"],
+.table tr td.hspan3:last-child textarea {
   /* width: 512.5%; */
 }
 
-.table tr td.hspan3:last-child input[type="text"] {
+.table tr td.hspan3:last-child input[type="text"],
+.table tr td.hspan3:last-child textarea {
   width: 510%;
   width: 745px;
 }
 
-.table tr td.hspanX input[type="text"] {
+.table tr td.hspanX input[type="text"],
+.table tr td.hspanX textarea {
   width: 491px !important;
 }
 
@@ -191,13 +210,15 @@ input[type="text"] :hover {
   width: 508px;
 }
 
-.table tr td.hspan2 input[type="text"] {
+.table tr td.hspan2 input[type="text"],
+.table tr td.hspan2 textarea {
   width: 245%;
   /* width: 357.69px; */
   width: 364.995px;
 }
 
-.table tr td.hspan2-right input[type="text"] {
+.table tr td.hspan2-right input[type="text"],
+.table tr td.hspan2-right textarea {
   width: 255%;
   /* width: 372.3px; */
   width: 364.995px;
@@ -280,10 +301,11 @@ th.form--label {
   text-align: left;
 }
 
-input[type="text"] {
+input[type="text"],
+textarea {
   background: #F7F7F7;
   border-bottom-color: rgba(0,0,0,0) !important;
-  color: #545454;
+  /* color: #545454; */
   width: 157.5%;
   /* width: 229.94px; */
   width: 237.4866666667px;

@@ -25,6 +25,39 @@ class TextField extends React.Component {
         </p>
         <span className="hiddenPrint">
           <FloatingLabel
+            element='textarea'
+            placeholder={this.props.placeholder}
+            onChange={this.handleChange}
+            value={this.state.value}
+          />
+        </span>
+      </div>
+    )
+  }
+}
+
+class TextArea extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { value: this.props.defaultValue }
+
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(event) {
+    // console.log(this.state.value)
+    this.setState({ value: event.target.value })
+  }
+
+  render() {
+    return (
+      <div className="container__textArea">
+        <p className="hidden">
+          {this.state.value}
+        </p>
+        <span className="hiddenPrint span__textArea">
+          <FloatingLabel
+            element='textarea'
             placeholder={this.props.placeholder}
             onChange={this.handleChange}
             value={this.state.value}
@@ -197,7 +230,7 @@ class AddEvents extends React.Component {
                   </tbody>
                 </table>
 
-                <table className="table addtable2">
+                <table className="table addtable2" id="section5">
                   <thead>
                     <tr className="vspace">
                       <th></th>
@@ -235,7 +268,7 @@ class AddEvents extends React.Component {
                 </td>
               </tr>
 
-              <tr>
+              <tr id="removeSection5">
                 <td className="hspan3 addRow">For more information on assessment refer to section 5.</td>
               </tr>
             </tbody>
@@ -600,7 +633,7 @@ class PDFContainer extends React.Component {
                 </tr>
                 <tr className="vspace"></tr>
                 <tr>
-                  <td className="hspanX"><TextField defaultValue="" placeholder="Definition from student handbook"/></td>
+                  <td className="hspanX"><TextArea defaultValue="" placeholder="Definition from student handbook"/></td>
                   <td className="hspan1"></td>
                 </tr>
                 <tr className="vspace"></tr>
@@ -721,7 +754,7 @@ class PDFContainer extends React.Component {
                 </tr>
                 <tr className="vspace"></tr>
                 <tr>
-                  <td className="hspanX"><TextField defaultValue="" placeholder="Information from student handbook"/></td>
+                  <td className="hspanX"><TextArea defaultValue="" placeholder="Information from student handbook"/></td>
                   <td></td>
                 </tr>
                 <tr className="vspace"></tr>
