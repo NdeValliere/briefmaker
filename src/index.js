@@ -34,7 +34,7 @@ setInterval(function(){
 function autosize(){
   var el = this;
   setTimeout(function(){
-  el.style.cssText = 'height: 17.5px; padding:0';
+  el.style.cssText = 'height: 19px; padding:0';
   // for box-sizing other than "content-box" use:
   // el.style.cssText = '-moz-box-sizing:content-box';
   // console.log('active textarea');
